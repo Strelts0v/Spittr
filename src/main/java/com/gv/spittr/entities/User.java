@@ -2,26 +2,26 @@ package com.gv.spittr.entities;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.hibernate.validator.constraints.Email;
+
 import javax.validation.constraints.Size;
 
 public class User {
 
     private long id;
 
-    @Size(min=2, max=30)
+    @Size(min=2, max=30, message="{Size.user.firstName}")
     private String firstName;
 
-    @Size(min=2, max=30)
+    @Size(min=2, max=30, message="{Size.user.lastName}")
     private String lastName;
 
-    @Size(min=5, max=30)
+    @Size(min=5, max=30, message="{Size.user.userName}")
     private String userName;
 
-    @Email
+    @Size(min=7, max=40, message="{Size.user.email}")
     private String email;
 
-    @Size(min=8, max=30)
+    @Size(min=8, max=30, message="{Size.user.password}")
     private String password;
 
     public long getId() {
