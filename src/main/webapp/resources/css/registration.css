@@ -7,3 +7,7 @@ input.error {
 span.error {
     color: red;
 }
+div.errors {
+    background-color: #ffcccc;
+    border: 2px solid red;
+}

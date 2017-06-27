@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
     <title>Spittr</title>
 </head>
 <body>
- <h2>Your spittles</h2>
+ <h2><spring:message code="spittles.header" /></h2>
  <ul>
   <c:forEach items="${spittles}" var="spittle" >
      <li>
