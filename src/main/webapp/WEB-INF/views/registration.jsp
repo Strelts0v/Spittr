@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
@@ -9,7 +11,7 @@
     <link href="<c:url value="/resources/css/registration.css" />" rel="stylesheet">
 </head>
 
-<page:body-template>
+<page:template>
 <jsp:body>
  <h1><spring:message code="registration.form.header" /></h1>
  <sf:form method="POST" commandName="user" action="/register">
@@ -36,4 +38,4 @@
     <input type="submit" value="<spring:message code="home.register" />" />
  </sf:form>
 </jsp:body>
-</page:body-template>
+</page:template>

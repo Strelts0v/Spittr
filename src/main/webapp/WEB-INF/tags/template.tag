@@ -32,7 +32,7 @@
             <div class="col-lg-12">
                 <a href="<%=request.getContextPath()%>?locale=en">EN</a>
                 <a href="<%=request.getContextPath()%>?locale=ru">RU</a>
-                <p>Copyright © com.vg 2017</p>
+                <p>Copyright © com.gv 2017</p>
             </div>
         </div>
     </footer>
