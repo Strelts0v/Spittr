@@ -12,8 +12,8 @@ public class MainControllerTest {
     @Test
     public void testHomePageWithSlash() throws Exception {
         MainController controller = new MainController();
-        MockMvc mockMvc = standaloneSetup(controller).build();          // Set up MockMvc
-        mockMvc.perform(get("/"))                            // perform GET request
+        MockMvc mockMvc = standaloneSetup(controller).build();               // Set up MockMvc
+        mockMvc.perform(get("/"))                             // perform GET request
                 .andExpect(view().name("/views/home")); // expect correct path to the view
     }
 
