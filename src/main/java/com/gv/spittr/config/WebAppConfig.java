@@ -5,7 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.XmlViewResolver;
 
 import java.util.Locale;
 
@@ -25,6 +29,7 @@ import java.util.Locale;
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     private final static int COOKIE_MAX_AGE = 100000;
+    private final static int MAX_FILE_UPLOAD_SIZE = 40000000;
 
     // Configure a JSP view resolver
     @Bean
@@ -35,6 +40,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         resolver.setViewClass(JstlView.class);      // resolving JSTL views
         return resolver;
     }
+
+
 
     // Configure static content handling
     @Override
@@ -75,6 +82,23 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
         interceptor.setParamName("locale");
         registry.addInterceptor(interceptor);
+    }
+
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver createMultipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("utf-8");
+        resolver.setMaxUploadSize(MAX_FILE_UPLOAD_SIZE);
+        return resolver;
+    }
+
+    @Bean(name = "xmlViewResolver")
+    public XmlViewResolver getXmlViewResolver() {
+        XmlViewResolver resolver = new XmlViewResolver();
+        resolver.setOrder(0);
+        Resource resource = new ClassPathResource("config/documents-config.xml");
+        resolver.setLocation(resource);
+        return resolver;
     }
 }
 
